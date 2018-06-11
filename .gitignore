@@ -1,0 +1,12 @@
+*.tar
+*.gz
+*.zip
+*.7z
+*.zip
+*.7z
+*.log
+toop-dir
+toop-dir*
+hb2b-dockerize
+publisher
+tmp
