@@ -1,48 +1,73 @@
-JDK_DOCKER_VOLUME="jdk_volume"
-toop_dir="toop-dir"
-external_port="8081"
+#!/bin/bash
 
 
-if [ "$#" -ne 2 ]
+
+# Options:
+# -n network_name
+# -t toop_dir
+# -c container_name
+# -p external_port
+# -s smp_container_name_to_link
+# -m smp_network_name (the network that the smp container runs in)
+# ./run.sh -h prints help
+# both arguments are optional
+
+args=`getopt s:m:c:n:t:p:h $*`
+set -- $args
+
+
+# extract options and their arguments into variables.
+for i ; do
+    case "$i"
+    in
+        -n)
+            network=$2 ; echo "set network"; shift 2;;
+        -t)
+            toop_dir=$2 ; shift 2;;
+        -c) 
+            container_name=$2 ; shift 2;;
+        -p) 
+            PORT_OPT="-p $2:8080" ; shift 2;;
+        -h) 
+            echo "Usage: ./run.sh [-t toop_dir] [-n network] [-c container_name] [-s smp_container] [-m smp_network_name] [-p externalport] [-h (for help)]"; exit 0;;
+        --) shift; break;;
+    esac
+done
+
+
+
+if [[ $network != "" ]]
 then
-    echo "Using defaults:"
-else
-    toop_dir_volume=$1
-    external_port=$2
+   NETWORK_OPT="--network=$network"
+   docker network create $network
 fi
 
-
-CONTAINER_NAME="toop-connector"
-
-docker stop $CONTAINER_NAME
-docker rm $CONTAINER_NAME
-
-
-# check if the toop data dir is relative and convert it to absolute
-if [[ $toop_dir == /* ]]
+if [[ $toop_dir != "" ]]
 then
-   echo "$toop_dir is absolute path"
-else
-   echo "$toop_dir is relative, convert it to absolute"
    toop_dir="$(pwd)/$toop_dir"
 fi
 
-mkdir -p $toop_dir
+if [[ $container_name != "" ]]
+then
+   CONTAINER_NAME_OPT="--name=$container_name"
+   NET_ALIAS_OPT="--net-alias $container_name"
+fi
 
-echo "JDK VOLUME    $jdk_volume"
-echo "CONFIG VOLUME $toop_dir"
-echo "PORT          $external_port"
+
+echo "toop_dir            : $toop_dir"
+echo "NETWORK_OPT         : $NETWORK_OPT"
+echo "CONTAINER_NAME_OPT  : $CONTAINER_NAME_OPT"
+echo "NET_ALIAS_OPT       : $NET_ALIAS_OPT"
+echo "PORT_OPT            : $PORT_OPT"
 
 echo "   ./run.sh $jdk_volume $toop_dir $external_port"
     
     
-docker run --name $CONTAINER_NAME \
-           --network elonia \
-           --net-alias $CONTAINER_NAME \
-           --link smp \                             
-           -d -v $JDK_DOCKER_VOLUME:/jdk_home \
+docker run -d \
+           $CONTAINER_NAME_OPT \
+           $NETWORK_OPT \
+           $NET_ALIAS_OPT \
+           $PORT_OPT \
            -v $toop_dir:/toop-dir \
-           -p $external_port:8080 \
            toop/toop-connector-webapp:0.9.1
 
-docker network connect smpnet toop-connector

@@ -10,3 +10,7 @@ toop-dir*
 hb2b-dockerize
 publisher
 tmp
+hb2b-dockerize
+toop-dir
+.DS_Store
+hb2b
