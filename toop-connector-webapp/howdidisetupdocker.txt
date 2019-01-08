@@ -1,0 +1,31 @@
+#setup docker
+echo "see https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-debian-9"
+apt-get update
+apt-get install -y p7zip-full apt-transport-https ca-certificates curl gnupg2 software-properties-common
+curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+apt-get update
+apt-cache policy docker-ce
+apt-get -y install docker-ce
+#systemctl status docker
+#done setting up docker ce
+
+#load hb2b image
+7z x hb2b.tar.7z
+docker load -i hb2b.tar
+
+#create a simple script for launching the connector
+echo '#!/bin/bash
+docker run --name gateway \
+    -d -v /toop-dir:/toop-dir \
+    --restart unless-stopped \
+    -p 8082:8080 hb2b:1' > run-hb2b-docker.sh
+    
+#make the script executable
+chmod +x run-tc-docker.sh
+
+#run tc. Thats it
+./run-tc-docker.sh
+
+#please use 'docker restart hb2b' whenever 
+#you change the configuration which is under /toop-dir/hb2b/conf/

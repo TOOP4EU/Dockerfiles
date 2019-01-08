@@ -1,7 +1,7 @@
 FROM toop/tomcat-jdk-image:1
 
 
-ARG SMP_VERSION=5.0.6
+ARG SMP_VERSION=5.0.8
 ARG SMP_URL=http://repo2.maven.org/maven2/com/helger/peppol-smp-server-webapp-xml/${SMP_VERSION}/peppol-smp-server-webapp-xml-${SMP_VERSION}.war
 
 ENV CATALINA_HOME /tomcat
