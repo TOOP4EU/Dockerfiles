@@ -69,5 +69,5 @@ docker run -d \
            $NET_ALIAS_OPT \
            $PORT_OPT \
            -v $toop_dir:/toop-dir \
-           toop/toop-connector-webapp:0.9.1
+           toop/toop-connector-webapp:0.9.3
 

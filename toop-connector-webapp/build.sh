@@ -1,1 +1,1 @@
-docker build -t toop/toop-connector-webapp:0.9.2 .
+docker build -t toop/toop-connector-webapp:0.10.0-SNAPSHOT .

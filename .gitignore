@@ -14,3 +14,4 @@ hb2b-dockerize
 toop-dir
 .DS_Store
 hb2b
+*.war
