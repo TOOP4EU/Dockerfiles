@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t toop/peppol-smp-server:5.0.8 .
+docker build -t toop/peppol-smp-server:5.1.0 .

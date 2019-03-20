@@ -1,6 +1,6 @@
 FROM toop/tomcat-jdk-image:1
 
-ARG TOOP_CONNECTOR_VERSION=0.10.0-SNAPSHOT
+ARG TOOP_CONNECTOR_VERSION
 ARG TC_WAR_URL=http://central.maven.org/maven2/eu/toop/toop-connector-webapp/${TOOP_CONNECTOR_VERSION}/toop-connector-webapp-${TOOP_CONNECTOR_VERSION}.war
 ARG TC_WAR_NAME=toop-connector-webapp-${TOOP_CONNECTOR_VERSION}.war
 
@@ -20,11 +20,9 @@ ENV TC_PORT=$TC_PORT \
     TOOP_CONNECTOR_VERSION=${TOOP_CONNECTOR_VERSION} \
     JAVA_OPTS="-Dtoop.connector.server.properties.path=/toop-dir/tc/config/toop-connector.properties"
 
-ADD toop-connector-webapp-0.10.0-SNAPSHOT.war ./
-
 RUN rm -fr manager host-manager ROOT && \
     echo "Downloading connector from $TC_WAR_URL" && \
-    #wget $TC_WAR_URL && \
+    wget $TC_WAR_URL && \
     unzip $TC_WAR_NAME -d ROOT  && \
     rm -fr $TC_WAR_NAME  && \
     chmod +x /prepare-and-run.sh 
