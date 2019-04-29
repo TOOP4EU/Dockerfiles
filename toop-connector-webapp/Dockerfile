@@ -18,7 +18,8 @@ ENV TC_PORT=$TC_PORT \
     TC_WAR_URL=$TC_WAR_URL \
     TC_WAR_NAME=$TC_WAR_NAME \
     TOOP_CONNECTOR_VERSION=${TOOP_CONNECTOR_VERSION} \
-    JAVA_OPTS="-Dtoop.connector.server.properties.path=/toop-dir/tc/config/toop-connector.properties"
+    JAVA_OPTS="-Dtoop.connector.server.properties.path=/toop-dir/tc/config/toop-connector.properties" \
+    CATALINA_OPTS="$CATALINA_OPTS -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -Djava.security.egd=file:/dev/urandom"
 
 RUN rm -fr manager host-manager ROOT && \
     echo "Downloading connector from $TC_WAR_URL" && \
