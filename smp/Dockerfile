@@ -1,4 +1,4 @@
-FROM toop/tomcat-jdk-image:1
+FROM tomcat:9-jre11
 
 
 ARG SMP_VERSION
