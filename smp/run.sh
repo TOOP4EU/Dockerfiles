@@ -9,7 +9,7 @@ docker rm $CONTAINER_NAME
 toop_dir="toop-dir"
 external_port="8080"
 
-SMP_VERSION=5.0.8
+SMP_VERSION=5.1.1
 
 if (($# != 2 ))
 then

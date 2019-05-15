@@ -1,4 +1,4 @@
-FROM toop/tomcat-jdk-image:1
+FROM tomcat:9-jre11
 
 ARG TOOP_CONNECTOR_VERSION
 ARG TC_WAR_URL=http://central.maven.org/maven2/eu/toop/toop-connector-webapp/${TOOP_CONNECTOR_VERSION}/toop-connector-webapp-${TOOP_CONNECTOR_VERSION}.war
@@ -6,10 +6,10 @@ ARG TC_WAR_NAME=toop-connector-webapp-${TOOP_CONNECTOR_VERSION}.war
 
 
 #COPY SCRIPTS and the default config TO THE ROOT
-RUN  mkdir /apriorifiles
+RUN  mkdir /supplementaryFiles
 
-COPY default-toop-connector.properties playground-keystore.jks /apriorifiles/
-COPY prepare-and-run.sh default-toop-connector.properties playground-keystore.jks /
+COPY default-toop-connector.properties playground-keystore.jks /supplementaryFiles/
+COPY prepare-and-run.sh /
 
 #create tc webapp folder
 WORKDIR $CATALINA_HOME/webapps

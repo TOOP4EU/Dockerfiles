@@ -30,7 +30,7 @@ function checkForConfig {
         echo "$1 already exists in the $TOOP_DIR/smp/config/$1"
     else
         echo "No $1 file found at $TOOP_DIR/smp/config/ Create a default one"
-        cp /default-$1 $TOOP_DIR/smp/config/$1
+        cp /supplementaryFiles/default-$1 $TOOP_DIR/smp/config/$1
     fi
 }
 
