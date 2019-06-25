@@ -1,4 +1,4 @@
-toop/peppol-smp-server:5.1.1 docker image build and run scripts
+toop/peppol-smp-server:5.1.2 docker image build and run scripts
 
 1. To build the image
     ./build.sh

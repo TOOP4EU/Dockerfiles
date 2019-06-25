@@ -8,7 +8,7 @@ ARG SMP_URL=http://repo2.maven.org/maven2/com/helger/peppol-smp-server-webapp-xm
 #run the image with a -v shared_jre_volume:/jre_home
 ENV SMP_VERSION=$SMP_VERSION \
     SMP_URL=$SMP_URL \
-    JAVA_OPTS="-Dsmp.webapp.properties.path=/toop-dir/smp/config/webapp.properties -Dsmp.server.properties.path=/toop-dir/smp/config/smp-server.properties -Dpd.client.properties.path=/toop-dir/smp/config/pd-client.properties" \
+    JAVA_OPTS="$JAVA_OPTS -Dsmp.webapp.properties.path=/toop-dir/smp/config/webapp.properties -Dsmp.server.properties.path=/toop-dir/smp/config/smp-server.properties -Dpd.client.properties.path=/toop-dir/smp/config/pd-client.properties" \
     CATALINA_OPTS="$CATALINA_OPTS -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -Djava.security.egd=file:/dev/urandom"
 
 RUN mkdir /supplementaryFiles
