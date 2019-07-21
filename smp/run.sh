@@ -35,4 +35,4 @@ docker run --name $CONTAINER_NAME -d \
      --network smpnet \
      --net-alias $CONTAINER_NAME \
     -v $toop_dir:/toop-dir -p $external_port:8080 \
-    toop/peppol-smp-server:${SMP_VERSION}
+    toop/phoss-smp:${SMP_VERSION}
