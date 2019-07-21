@@ -2,7 +2,7 @@ FROM tomcat:9-jre11
 
 
 ARG SMP_VERSION
-ARG SMP_URL=http://repo2.maven.org/maven2/com/helger/peppol-smp-server-webapp-xml/${SMP_VERSION}/peppol-smp-server-webapp-xml-${SMP_VERSION}.war
+ARG SMP_URL=http://repo2.maven.org/maven2/com/helger/phoss-smp-webapp-xml/${SMP_VERSION}/phoss-smp-webapp-xml-${SMP_VERSION}.war
 
 #this is linked from the shared java container
 #run the image with a -v shared_jre_volume:/jre_home
