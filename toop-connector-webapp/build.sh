@@ -1,3 +1,3 @@
-version=0.10.5
+version=0.10.6
 
 docker build --build-arg TOOP_CONNECTOR_VERSION=$version -t toop/toop-connector-webapp:$version .
