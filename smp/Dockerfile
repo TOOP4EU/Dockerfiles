@@ -28,4 +28,7 @@ RUN echo "Downloading phoss SMP from $SMP_URL" && \
     rm -fr smpsetup smp.zip && \
     chmod  +x  ./prepare-and-run.sh  
 
+# Ensure the truststore is present - do it after unzipping to ensure the folder is present
+COPY playground-truststore-v4.jks $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/
+
 CMD ["./prepare-and-run.sh"]
