@@ -36,3 +36,4 @@ docker run --name $CONTAINER_NAME -d \
      --net-alias $CONTAINER_NAME \
     -v $toop_dir:/toop-dir -p $external_port:8080 \
     toop/phoss-smp:${SMP_VERSION}
+
