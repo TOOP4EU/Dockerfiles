@@ -20,12 +20,13 @@ COPY prepare-and-run.sh  /
 WORKDIR  /
 
 RUN echo "Downloading phoss SMP from $SMP_URL" && \
-    wget $SMP_URL -O smp.zip  && \
-    unzip smp.zip -d /smpsetup/  && \
+    wget $SMP_URL -O smp.zip && \
+    unzip smp.zip -d /smpsetup/ && \
     rm -fr $CATALINA_HOME/webapps && \
     mkdir -p $CATALINA_HOME/webapps && \
     cp -r /smpsetup/ $CATALINA_HOME/webapps/ROOT && \
     rm -fr smpsetup smp.zip && \
-    chmod  +x  ./prepare-and-run.sh  
+    chmod +x ./prepare-and-run.sh  
 
 CMD ["./prepare-and-run.sh"]
+
