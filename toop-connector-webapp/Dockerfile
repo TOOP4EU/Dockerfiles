@@ -16,13 +16,13 @@
 FROM tomcat:9-jre11
 
 ARG TOOP_CONNECTOR_VERSION
-ARG TC_WAR_URL=http://central.maven.org/maven2/eu/toop/toop-connector-webapp/${TOOP_CONNECTOR_VERSION}/toop-connector-webapp-${TOOP_CONNECTOR_VERSION}.war
+ARG TC_WAR_URL=https://repo1.maven.org/maven2/eu/toop/toop-connector-webapp/${TOOP_CONNECTOR_VERSION}/toop-connector-webapp-${TOOP_CONNECTOR_VERSION}.war
 ARG TC_WAR_NAME=toop-connector-webapp-${TOOP_CONNECTOR_VERSION}.war
 
 #COPY SCRIPTS and the default config TO THE ROOT
 RUN  mkdir /supplementaryFiles
 
-COPY default-toop-connector.properties playground-keystore.jks /supplementaryFiles/
+COPY default-toop-connector.properties /supplementaryFiles/
 COPY prepare-and-run.sh /
 
 #create tc webapp folder
@@ -33,7 +33,7 @@ ENV TC_PORT=$TC_PORT \
     TC_WAR_NAME=$TC_WAR_NAME \
     TOOP_CONNECTOR_VERSION=${TOOP_CONNECTOR_VERSION} \
     JAVA_OPTS="$JAVA_OPTS -Dtoop.connector.server.properties.path=/toop-dir/tc/config/toop-connector.properties" \
-    CATALINA_OPTS="$CATALINA_OPTS -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -Djava.security.egd=file:/dev/urandom"
+    CATALINA_OPTS="$CATALINA_OPTS -Djava.security.egd=file:/dev/urandom"
 
 RUN rm -fr manager host-manager ROOT && \
     echo "Downloading connector from $TC_WAR_URL" && \
@@ -43,5 +43,6 @@ RUN rm -fr manager host-manager ROOT && \
     chmod +x /prepare-and-run.sh 
 
 WORKDIR /
+
 #run connector setup
 CMD ["/prepare-and-run.sh"]

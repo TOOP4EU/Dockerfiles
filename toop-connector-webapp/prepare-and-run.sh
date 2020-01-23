@@ -29,7 +29,6 @@ then
 else
     echo "No configuration file found at $TOOP_DIR/tc/config/ Create a default one"
     cp /supplementaryFiles/default-toop-connector.properties $TOOP_DIR/tc/config/toop-connector.properties
-    cp /supplementaryFiles/playground-keystore.jks           $TOOP_DIR/tc/config/playground-keystore.jks
 fi
 
 echo "RUN TOMCAT"
