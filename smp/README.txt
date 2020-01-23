@@ -32,10 +32,6 @@ toop/phoss-smp:5.2.0 docker image build and run scripts
     
     
 Other files:
-1. smp-setup.sh: This script is used ruing the build stage. It downloads and installs the smp server war file into
-the image being built.
-2. tomcat-setup.sh:  This script is used ruing the build stage. It downloads and installs apache tomcat into the
-the image being built.
-3. prepare-and-run.sh: This script is built into the image. It is used during the launching of the servers. It checks
-and creates the toop-dir and fills the sub directories with the config files and creates the whole
-/toop-dir/smp folder structures and then runs 'catalina.sh run'.
+1. smp-setup.sh: This script is used ruing the build stage. It downloads and installs the smp server war file into the image being built.
+2. tomcat-setup.sh:  This script is used ruing the build stage. It downloads and installs apache tomcat into the the image being built.
+3. prepare-and-run.sh: This script is built into the image. It is used during the launching of the servers. It checks and creates the toop-dir and fills the sub directories with the config files and creates the whole /toop-dir/smp folder structures and then runs 'catalina.sh run'.
