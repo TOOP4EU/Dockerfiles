@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+version=0.10.8
 
 # Options:
 # -n network_name
@@ -82,7 +82,7 @@ containerId=`docker run -d \
            $NET_ALIAS_OPT \
            $PORT_OPT \
            -v $toop_dir:/toop-dir \
-           toop/toop-connector-webapp:0.10.5`
+           toop/toop-connector-webapp:$version`
 
 
 echo "Container ID is $containerId"
