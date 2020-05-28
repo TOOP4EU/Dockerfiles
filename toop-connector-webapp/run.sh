@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=0.10.8
+version=2.0.0-beta4
 
 # Options:
 # -n network_name

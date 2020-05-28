@@ -1,7 +1,5 @@
 #!/bin/sh
 
-TOOP_DIR=/toop-dir
-
 echo "************************************************************************"
 echo "************************************************************************"
 echo "************************************************************************"
@@ -15,21 +13,21 @@ echo "************************************************************************"
 echo "Create Directories"
 
 #create connector directories
-mkdir -p $TOOP_DIR/tc/dumps/from-dc
-mkdir -p $TOOP_DIR/tc/dumps/to-dc
-mkdir -p $TOOP_DIR/tc/dumps/from-dp
-mkdir -p $TOOP_DIR/tc/dumps/to-dp
-mkdir -p $TOOP_DIR/tc/config
-
+mkdir -p ${TC_CONFIG_LOCATION}
 
 echo "Check TC Config"
-if [ -f $TOOP_DIR/tc/config/toop-connector.properties ]
+if [ -f ${TC_CONFIG_FILE} ]
 then
-    echo "A configuration already exists in the $TOOP_DIR/tc/config/toop-connector.properties"
+    echo "A configuration already exists in the $TOOP_DIR/tc/config/application.properties"
 else
     echo "No configuration file found at $TOOP_DIR/tc/config/ Create a default one"
-    cp /supplementaryFiles/default-toop-connector.properties $TOOP_DIR/tc/config/toop-connector.properties
+    cp /default-application.properties ${TC_CONFIG_FILE}
 fi
+
+echo "delete the existing application.properties file from WEB-INF/classes"
+echo "and link ${TC_CONFIG_FILE}"
+rm -fr $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/application.properties
+cp ${TC_CONFIG_FILE} $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/application.properties
 
 echo "RUN TOMCAT"
 catalina.sh run
