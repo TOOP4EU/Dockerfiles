@@ -38,11 +38,11 @@ ENV TC_PORT=$TC_PORT \
     CATALINA_OPTS="$CATALINA_OPTS -Djava.security.egd=file:/dev/urandom"
 
 
-ADD tc-webapp-${TOOP_CONNECTOR_VERSION}.war ./
+#ADD tc-webapp-${TOOP_CONNECTOR_VERSION}.war ./
 
 RUN rm -fr manager host-manager ROOT && \
     echo "Downloading connector from $TC_WAR_URL" && \
-    #wget $TC_WAR_URL && \
+    wget $TC_WAR_URL && \
     unzip $TC_WAR_NAME -d ROOT  && \
     rm -fr $TC_WAR_NAME  && \
     chmod +x /prepare-and-run.sh 
