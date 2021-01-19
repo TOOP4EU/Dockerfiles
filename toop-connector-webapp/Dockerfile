@@ -50,4 +50,4 @@ RUN rm -fr manager host-manager docs examples ROOT && \
 WORKDIR /
 
 #run connector setup
-CMD ["prepare-and-run.sh"]
+CMD ["/prepare-and-run.sh"]
