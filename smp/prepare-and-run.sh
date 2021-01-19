@@ -35,11 +35,10 @@ function checkForConfig {
 }
 
 
-checkForConfig "pd-client.properties"
+checkForConfig "application.properties"
 checkForConfig "smp-server.properties"
 checkForConfig "webapp.properties"
 checkForConfig "playground-truststore-v4.1.jks"
 
 echo "RUN TOMCAT"
-catalina.sh run
-
+$CATALINA_HOME/bin/catalina.sh run

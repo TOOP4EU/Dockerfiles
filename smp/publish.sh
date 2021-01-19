@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=5.2.3
+version=5.3.2
 
 docker login
 docker push toop/phoss-smp:$version

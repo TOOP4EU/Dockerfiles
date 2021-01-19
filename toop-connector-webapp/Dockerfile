@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM tomcat:9-jre11
+FROM tomcat:9-jdk11
 
 ARG TOOP_CONNECTOR_VERSION
 ARG TC_WAR_URL=https://repo1.maven.org/maven2/eu/toop/tc-webapp/${TOOP_CONNECTOR_VERSION}/tc-webapp-${TOOP_CONNECTOR_VERSION}.war
@@ -40,7 +40,7 @@ ENV TC_PORT=$TC_PORT \
 
 #ADD tc-webapp-${TOOP_CONNECTOR_VERSION}.war ./
 
-RUN rm -fr manager host-manager ROOT && \
+RUN rm -fr manager host-manager docs examples ROOT && \
     echo "Downloading connector from $TC_WAR_URL" && \
     wget $TC_WAR_URL && \
     unzip $TC_WAR_NAME -d ROOT  && \
@@ -50,4 +50,4 @@ RUN rm -fr manager host-manager ROOT && \
 WORKDIR /
 
 #run connector setup
-CMD ["/prepare-and-run.sh"]
+CMD ["prepare-and-run.sh"]

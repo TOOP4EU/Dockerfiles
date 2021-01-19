@@ -30,4 +30,4 @@ rm -fr $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/application.properties
 cp ${TC_CONFIG_FILE} $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/application.properties
 
 echo "RUN TOMCAT"
-catalina.sh run
+$CATALINA_HOME/bin/catalina.sh run
