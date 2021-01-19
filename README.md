@@ -1,1 +1,1 @@
-[Please visit the Wiki Page](http://wiki.ds.unipi.gr/display/TOOP/Docker+Images)
+[Please visit the Wiki Page](http://wiki.ds.unipi.gr/display/CCTF/Docker+Images)
